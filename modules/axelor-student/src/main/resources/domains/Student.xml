@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  http://axelor.com/xml/ns/domain-models/domain-models_5.2.xsd">
+
+  <module name="student" package="com.axelor.app.student.db" />
+
+  <entity name="Student">
+    <string name="name" />
+    <one-to-one ref="com.axelor.app.student.db.RollNumber" name="rollnumber" title="Roll number" />
+    <many-to-one name="department" ref="com.axelor.app.student.db.Department" title="Department" />
+    <many-to-many name="subject" ref="com.axelor.app.student.db.Subject" title="Subject" />
+    <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports"/>
+    <many-to-many name="contact" ref="com.axelor.contact.db.Contact" title="Teachers"/>
+  </entity>
+
+</domain-models>

@@ -1,0 +1,3 @@
+include 'modules:axelor-student'
+include 'modules:axelor-demo-contact'
+rootProject.name = 'axelor-new-demo'
