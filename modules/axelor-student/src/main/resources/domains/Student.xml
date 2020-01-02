@@ -5,13 +5,16 @@
 
   <module name="student" package="com.axelor.app.student.db" />
 
+  <sequence name="student.name.seq" increment="1" initial="1" padding="4" prefix="Student-" />
+
   <entity name="Student">
-    <string name="name" />
-    <one-to-one ref="com.axelor.app.student.db.RollNumber" name="rollnumber" title="Roll number" />
+    <string name="name" sequence="student.name.seq" readonly="true" unique="true"/>
+    <one-to-one ref="com.axelor.app.student.db.RollNumber" name="rollnumber" title="Roll number" help="Roll number should be unique"/>
     <many-to-one name="department" ref="com.axelor.app.student.db.Department" title="Department" />
     <many-to-many name="subject" ref="com.axelor.app.student.db.Subject" title="Subject" />
-    <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports"/>
+    <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports" mappedBy="student"/>
     <many-to-many name="contact" ref="com.axelor.contact.db.Contact" title="Teachers"/>
   </entity>
+
 
 </domain-models>

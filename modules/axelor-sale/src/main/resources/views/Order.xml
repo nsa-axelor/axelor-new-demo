@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
+
+  <grid model="com.axelor.app.sale.db.Order" title="Order" name="order-grid">
+    <field name="name" />
+    <field name="contact" />
+    <field name="status" />
+    <field name="orderDate" />
+    <field name="totalAmount" />
+  </grid>
+
+  <form model="com.axelor.app.sale.db.Order" title="Order" name="order-form">
+    <field name="name" />
+    <field name="contact" onSelect="action.record.onselect.selectorder"/>
+    <field name="status" widget="nav-select" readonly="true" />
+    <field name="orderDate" readonlyIf="confirmed" />
+    <field name="confirmed" widget="boolean-switch" />
+    <field name="totalAmount" />
+  </form>
+
+
+</object-views>

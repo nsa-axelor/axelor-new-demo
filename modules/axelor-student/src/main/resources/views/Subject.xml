@@ -3,14 +3,16 @@
   xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
 
-  <grid model="com.axelor.app.student.db.Subject" title="Subject" name="subject-grid" canNew="false">
+  <grid model="com.axelor.app.student.db.Subject" title="Subject" name="subject-grid" canNew="false" orderBy="department">
     <field name="name" title="Subject" />
+    <field name="department" title="Department" />
   </grid>
 
   <form model="com.axelor.app.student.db.Subject" title="Subject" name="subject-form" canNew="false">
     <panel colSpan="12">
       <field name="name" colSpan="6" />
+      <field name="department"/>
     </panel>
   </form>
 
-  </object-views>
+</object-views>

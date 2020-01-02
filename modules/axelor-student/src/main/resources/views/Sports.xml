@@ -5,12 +5,17 @@
 
   <grid model="com.axelor.app.student.db.Sports" title="Sports" name="sports-grid" canNew="false">
     <field name="name" title="Sports" />
-    <field name="student" title="Student"/>
+    <field name="student.name" title="Student"/>
   </grid>
 
-  <form model="com.axelor.app.student.db.Sports" title="Sports" name="sports-form" canNew="false">
+  <form model="com.axelor.app.student.db.Sports" title="Sports" name="sports-form" canNew="false" onNew="action-attrs-sports-select-student">
     <field name="name" title="Sports"/>
-    <field name="student" title="Student" />
+    <field name="student" title="Student" depends="student"/>
   </form>
+
+  <action-attrs name="action-attrs-sports-select-student">
+    <attribute name="value" for="student" expr="eval: __parent__"/>
+    <attribute name="readonly" for="student" expr="eval: true"/>
+  </action-attrs>
 
   </object-views>

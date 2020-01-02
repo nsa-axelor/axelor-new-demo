@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
+
+  <grid model="com.axelor.app.student.db.NewTest" title="New Test" name="newtest-grid" orderBy="age">
+    <field name="name" title="New Test" />
+    <field name="hiddenfield" title="Hidden Field" />
+    <field name="age" title="Age" />
+    <field name="height" title="Height" />
+    <field name="bdate" title="Bdate" />
+    <field name="image" title="Image" />
+    <field name="active" title="Active" />
+    <field name="report" title="Report" />
+  </grid>
+
+  <form model="com.axelor.app.student.db.NewTest" title="New Test" name="newtest-form">
+    <field name="name" />
+    <field name="hiddenfield" />
+    <field name="age" />
+    <field name="height" />
+    <field name="bdate" />
+    <field name="active" />
+    <field name="image" showTitle="false" />
+    <field name="report" showTitle="false" colSpan="12" />
+    <button name="testBtn" title="Test" onClick="action.student.view.all.student" />
+    <button name="testtwo" title="Test Two" onClick="action.student.newtest.hiddenfield.show" />
+  </form>
+
+  <action-attrs name="action.student.newtest.hiddenfield.show">
+    <attribute name="hidden" for="age" expr="eval: __this__.age >= 18 || false" />
+  </action-attrs>
+
+  <tree name="newtest-tree" title="New Test Tree" showHeader="true">
+    <column name="name" type="string" />
+    <column name="height" />
+    <column name="age" />
+    <node model="com.axelor.app.student.db.Student" orderBy="name">
+      <field name="name" />
+    </node>
+    <node model="com.axelor.app.student.db.Sports" draggable="true" parent="student">
+      <field name="name" />
+    </node>
+  </tree>
+
+  <action-view name="menu-item-newtest-all" title="newtest-grid" model="com.axelor.app.student.db.NewTest">
+    <view type="grid" name="newtest-grid" />
+    <view type="form" name="newtest-form" />
+    <view type="tree" name="newtest-tree" />
+  </action-view>
+
+  <action-view name="menu-item-newtest-tree" title="newtest-grid" model="com.axelor.app.student.db.NewTest">
+    <view type="tree" name="newtest-tree" />
+  </action-view>
+
+  <cards name="newtest-card" model="com.axelor.app.student.db.NewTest" title="New Test Cards" width="25%">
+    <toolbar>
+      <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all" />
+      <button name="btnExport" icon="fa-tree" title="Tree" onClick="menu-item-newtest-tree" />
+    </toolbar>
+    <field name="name" />
+    <field name="age" />
+    <field name="height" />
+    <field name="bdate" />
+    <field name="active" />
+    <field name="image" showTitle="false" />
+    <field name="report" showTitle="false" colSpan="12" />
+    <template>
+      <![CDATA[
+      <div class="span4 card-image">
+          <img ng-if="hasImage" ng-src="{{$image(null, 'image')}}">
+          <img ng-if="!hasImage" src="{{$image(image,'image')}}">
+          <strong>{{name}}</strong>
+        </div>
+      <div class="span8">
+          <section>
+            <strong>{{name}} {{age}}</strong><br>
+            {{height}}<span ng-if="bdate">, {{bdate}}</span><span ng-if="address.zip"> - {{address.zip}}</span><br>
+            {{active}}<br>
+            <abbr ng-if="imag" title="Phone">P:</abbr>12345678<br>
+            <abbr ng-if="email" title="Email">E:</abbr>nsa.axelor@gmail.com<br>
+          </section>
+        </div>
+      ]]>
+    </template>
+  </cards>
+
+</object-views>

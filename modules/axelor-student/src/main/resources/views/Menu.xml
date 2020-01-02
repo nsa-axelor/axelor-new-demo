@@ -11,28 +11,36 @@
     <view type="form" name="student-form" />
   </action-view>
 
-  <menuitem title="Roll number" name="menu-item-rollnumber-all" parent="menu-item-student" action="action.student.view.all.rollnumber"/>
+  <menuitem title="Roll number" name="menu-item-rollnumber-all" parent="menu-item-student" action="action.student.view.all.rollnumber" />
   <action-view name="action.student.view.all.rollnumber" title="Roll number" model="com.axelor.app.student.db.RollNumber">
     <view type="grid" name="rollnumber-grid" />
-    <view type="form" name="rollnumber-form"/>
+    <view type="form" name="rollnumber-form" />
   </action-view>
 
-  <menuitem title="Department" name="menu-item-department-all" parent="menu-item-student" action="action.student.view.all.department"/>
+  <menuitem title="Department" name="menu-item-department-all" parent="menu-item-student" action="action.student.view.all.department" />
   <action-view name="action.student.view.all.department" title="Department" model="com.axelor.app.student.db.Department">
-    <view type="grid" name="department-grid"/>
-    <view type="form" name="department-form"/>
+    <view type="grid" name="department-grid" />
+    <view type="form" name="department-form" />
   </action-view>
 
-  <menuitem title="Subject" name="menu-item-subject-all" parent="menu-item-student" action="action.student.view.all.subject"/>
+  <menuitem title="Subject" name="menu-item-subject-all" parent="menu-item-student" action="action.student.view.all.subject" />
   <action-view name="action.student.view.all.subject" title="Subject" model="com.axelor.app.student.db.Subject">
     <view type="grid" name="subject-grid" />
     <view type="form" name="subject-form" />
   </action-view>
 
-  <menuitem title="Sports" name="menu-item-sports-all" parent="menu-item-student" action="action.student.view.all.sports"/>
+  <menuitem title="Sports" name="menu-item-sports-all" parent="menu-item-student" action="action.student.view.all.sports" />
   <action-view name="action.student.view.all.sports" title="Sports" model="com.axelor.app.student.db.Sports">
-    <view type="grid" name="sports-grid"/>
-    <view type="form" name="sports-form"/>
+    <view type="grid" name="sports-grid" />
+    <view type="form" name="sports-form" />
+  </action-view>
+
+  <menuitem title="New Test" name="menu-item-newtest-all" parent="menu-item-student" action="action.student.view.all.newtest" />
+  <action-view name="action.student.view.all.newtest" title="New Test" model="com.axelor.app.student.db.NewTest">
+    <view type="cards" name="newtest-card"/>
+    <view type="tree" name="newtest-tree" />
+    <view type="grid" name="newtest-grid" />
+    <view type="form" name="newtest-form" />
   </action-view>
 
 </object-views>

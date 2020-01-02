@@ -8,6 +8,7 @@
 
   <entity name="Subject">
     <string name="name" />
+    <many-to-one name="department" ref="com.axelor.app.student.db.Department"/>
   </entity>
 
   </domain-models>
