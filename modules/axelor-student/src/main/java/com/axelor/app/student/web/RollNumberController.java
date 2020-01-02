@@ -15,7 +15,13 @@ public class RollNumberController {
     Student stud = request.getContext().asType(Student.class);
     RollNumber rollNo = new RollNumber();
     rollNo = Beans.get(RollNumberRepository.class).save(rollNo);
+//    rollNo=Beans.get(RollNumberRepository.class).all().filter("self.id = ?",rollNo.getId()).fetchOne();
     stud.setRollnumber(rollNo);
     response.setValues(stud);
+//    if(true) {
+//    }
+//    System.err.println();
+//    response.setAlert("Warning msg");
+//    response.setReload(true);
   }
 }

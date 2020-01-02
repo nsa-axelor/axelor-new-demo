@@ -14,6 +14,7 @@
     <many-to-many name="subject" ref="com.axelor.app.student.db.Subject" title="Subject" />
     <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports" mappedBy="student"/>
     <many-to-many name="contact" ref="com.axelor.contact.db.Contact" title="Teachers"/>
+    <date name="bdate" title="Birth Date" />
   </entity>
 
 

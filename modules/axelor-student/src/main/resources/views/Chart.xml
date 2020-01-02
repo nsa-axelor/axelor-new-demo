@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
+
+	<chart name="chart-student" title="Student">
+		<search-fields>
+			<field name="bdate" />
+		</search-fields>
+		<dataset type="jpql">
+		</dataset>
+		<category key="abc" type="number" title="asd"/>
+		<series key="ada"/>
+	</chart>
+</object-views>

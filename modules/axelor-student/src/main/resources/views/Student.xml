@@ -1,71 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
 
-	<grid model="com.axelor.app.student.db.Student" title="Student" name="student-grid">
-		<field name="name" />
-		<field name="rollnumber.rollnumber" />
-		<field name="department" />
-		<field name="subject" />
-		<field name="sports" />
-		<field name="contact" title="Teacher" />
-	</grid>
+  <grid model="com.axelor.app.student.db.Student" title="Student" name="student-grid">
+    <field name="name" />
+    <field name="rollnumber.rollnumber" />
+    <field name="department" />
+    <field name="subject" />
+    <field name="sports" />
+    <field name="contact" title="Teacher" />
+    <field name="bdate" />
+  </grid>
 
-	<action-record name="action-attrs-onnew-load-default-value" model="com.axelor.app.student.db.Student">
-		<field name="$scholarShip" expr="eval: true" />
-	</action-record>
+  <action-record name="action-attrs-onnew-load-default-value" model="com.axelor.app.student.db.Student">
+    <field name="$scholarShip" expr="eval: true" />
+  </action-record>
 
-	<form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
-		onSave="action-student-method-onsave">
-		<!-- <toolbar> -->
-		<!-- <button name="btnPrint" icon="fa-print" title="Print" onClick="act1" /> -->
-		<!-- <button name="btnExport" icon="fa-rocket" title="Export" onClick="act2" /> -->
-		<!-- </toolbar> -->
-		<menubar>
-			<menu title="Actions" icon="${{contact.image,'image'}}" showTitle="false">
-				<item title="Send Greetings" action="act1" />
-				<item title="Home Page" action="act2" />
-				<divider />
-				<item title="Test" action="act3" />
-			</menu>
-		</menubar>
-		<panel colSpan="12">
-			<field name="name" colspan="6" />
-			<field name="rollnumber" colspan="6">
-				<!-- <editor x-viewer="true"> <field name="rollnumber" /> </editor> -->
-			</field>
-			<!-- </panel> <panel colSpan="12"> -->
-			<field name="$scholarShip" type="boolean" widget="boolean-switch" onChange="action-student-attrs-rollnumber"/>
-			<field name="department" colSpan="12" onChange="action-student-method-onsave,save,action-group-student-subject-filter"/>
-		</panel>
-		<panel colSpan="12">
-			<field name="subject" colSpan="12" domain="self.department = :department"/>
-			<!-- </panel> <panel> -->
-			<field name="sports" colSpan="12" />
-			<!-- </panel> <panel> -->
-			<field name="contact" colSpan="12" title="Teacher" />
-		</panel>
-	</form>
-	
-	<action-group name="action-group-student-subject-filter">
-		<action name="action-attrs-student-subject-filter"/>
-		<action name="action-record-student-subject-filter"/>
-	</action-group>
-	
-	<action-attrs name="action-attrs-student-subject-filter">
-		<attribute name="domain" for="subject" expr="self.department=:department" />
-	</action-attrs>
-	
-	<action-record name="action-record-student-subject-filter" model="com.axelor.app.student.db.Student">
-		<field name="subject" expr="eval: __self__.department.subject"/>
-	</action-record>
-	
-	<action-attrs name="action-student-attrs-rollnumber">
-		<attribute name="readonly" for="rollnumber" expr="eval: $scholarShip"/>
-	</action-attrs>
+  <form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
+    onSave="action-student-method-onsave,action-student-validate-date-check-onsave">
+    <panel colSpan="12">
+      <field name="name" colspan="6" />
+      <field name="rollnumber" colspan="6">
+        <!-- <editor x-viewer="true"> <field name="rollnumber" /> </editor> -->
+      </field>
+      <field name="bdate" />
+      <field name="$scholarShip" type="boolean" widget="boolean-switch" onChange="action-student-attrs-rollnumber" colSpan="3" />
+      <button name="toggle" onClick="action-student-attrs-toggle-onclick" title="Toggle" colSpan="3"/>
+      <field name="department" colSpan="12" onChange="action-student-method-onsave,save,action-group-student-subject-filter" />
+    </panel>
+    <panel colSpan="12">
+      <field name="subject" colSpan="12" domain="self.department = :department" />
+      <field name="sports" colSpan="12" />
+      <field name="contact" colSpan="12" title="Teacher" />
+    </panel>
+  </form>
 
-	<action-method name="action-student-method-onsave">
-		<call class="com.axelor.app.student.web.RollNumberController" method="generateRollNumber" />
-	</action-method>
+  <action-record name="action-record-scholarship-toggle" model="com.axelor.app.student.db.Student">
+    <field name="$scholarship" expr="eval: !$scholarShip"/>
+<!--     <field name="$scholarship" expr="eval: false" if="__this__.$scholarShip" /> -->
+  </action-record>
+  <action-attrs name="action-student-attrs-toggle-onclick">
+  	<attribute name="value" for="$scholarShip" expr="eval: !$scholarShip"/>
+  </action-attrs>
+
+  <action-group name="action-group-student-subject-filter">
+    <action name="action-attrs-student-subject-filter" />
+    <action name="action-record-student-subject-filter"/>
+  </action-group>
+
+  <action-attrs name="action-attrs-student-subject-filter">
+    <attribute name="domain" for="subject" expr="self.department=:department" />
+  </action-attrs>
+
+  <action-record name="action-record-student-subject-filter" model="com.axelor.app.student.db.Student">
+    <field name="subject" expr="eval: __self__.department.subject" />
+  </action-record>
+
+  <action-attrs name="action-student-attrs-rollnumber">
+    <attribute name="readonly" for="rollnumber" expr="eval: $scholarShip" />
+  </action-attrs>
+
+  <action-method name="action-student-method-onsave">
+    <call class="com.axelor.app.student.web.RollNumberController" method="generateRollNumber" />
+  </action-method>
+  
+ <action-validate name="action-student-validate-date-check-onsave">
+ 	<error message="date not valid !" if="bdate &gt; __date__" action="action-student-attrs-reset-badte"/>
+ </action-validate>
+  
+  <action-attrs name="action-student-attrs-reset-badte">
+  	<attribute name="value" for="bdate" expr=""/>
+  </action-attrs>
 </object-views>
