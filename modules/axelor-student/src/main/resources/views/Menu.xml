@@ -5,10 +5,25 @@
 
   <menuitem title="Student" name="menu-item-student" />
 
+
+
   <menuitem title="All students" name="menu-item-student-show-all" parent="menu-item-student" action="action.student.view.all.student" />
   <action-view name="action.student.view.all.student" title="All students" model="com.axelor.app.student.db.Student">
     <view type="grid" name="student-grid" />
     <view type="form" name="student-form" />
+  </action-view>
+
+  <menuitem title="Dashboard" name="menu-item-student-dashboard" action="action.student.view.dashboard.chart.student.by.marks" parent="menu-item-student"/>
+  <action-view name="action.student.view.dashboard.chart.student.by.marks" title="Dashboard" model="com.axelor.app.student.db.Student">
+    <view type="dashboard" name="welcomeDashboard" />
+  </action-view>
+  
+  <action-view name="action-student-view-new-student-entry-onnew-kanban" title="New Student">
+  	<view type="form" name="student-form"/>
+  </action-view>
+
+  <action-view name="action-student-view-kanban" title="Kanban" model="com.axelor.app.student.db.Student">
+    <view type="kanban" name="student-kanban"/>
   </action-view>
 
   <menuitem title="Roll number" name="menu-item-rollnumber-all" parent="menu-item-student" action="action.student.view.all.rollnumber" />
@@ -37,7 +52,7 @@
 
   <menuitem title="New Test" name="menu-item-newtest-all" parent="menu-item-student" action="action.student.view.all.newtest" />
   <action-view name="action.student.view.all.newtest" title="New Test" model="com.axelor.app.student.db.NewTest">
-    <view type="cards" name="newtest-card"/>
+    <view type="cards" name="newtest-card" />
     <view type="tree" name="newtest-tree" />
     <view type="grid" name="newtest-grid" />
     <view type="form" name="newtest-form" />

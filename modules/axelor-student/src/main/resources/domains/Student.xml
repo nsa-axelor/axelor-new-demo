@@ -8,13 +8,20 @@
   <sequence name="student.name.seq" increment="1" initial="1" padding="4" prefix="Student-" />
 
   <entity name="Student">
-    <string name="name" sequence="student.name.seq" readonly="true" unique="true"/>
-    <one-to-one ref="com.axelor.app.student.db.RollNumber" name="rollnumber" title="Roll number" help="Roll number should be unique"/>
+    <string name="name" sequence="student.name.seq" readonly="true" unique="true" />
+    <one-to-one ref="com.axelor.app.student.db.RollNumber" name="rollnumber" title="Roll number" help="Roll number should be unique" readonly="true" />
     <many-to-one name="department" ref="com.axelor.app.student.db.Department" title="Department" />
     <many-to-many name="subject" ref="com.axelor.app.student.db.Subject" title="Subject" />
-    <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports" mappedBy="student"/>
-    <many-to-many name="contact" ref="com.axelor.contact.db.Contact" title="Teachers"/>
+    <one-to-many name="sports" ref="com.axelor.app.student.db.Sports" title="Sports" mappedBy="student" />
+    <many-to-many name="contact" ref="com.axelor.contact.db.Contact" title="Teachers" />
     <date name="bdate" title="Birth Date" />
+    <integer name="age" title="Age" readonly="true" />
+    <boolean name="general" />
+    <string name="fatherName" />
+    <integer name="marks" />
+    <integer name="priority" selection="student.priority.select" default="2" title="Priority" />
+    <integer name="status" selection="student.status.select" title="Status"/>
+    <integer name="progress" title="Progress (%)" selection="student.progress.select"/>
   </entity>
 
 

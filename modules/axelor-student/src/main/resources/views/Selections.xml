@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
+
+  <selection name="student.priority.select">
+    <option value="1">Distinct</option>
+    <option value="2">First Class</option>
+    <option value="3">Second Class</option>
+    <option value="4">Third Class</option>
+  </selection>
+
+  <selection name="student.status.select">
+    <option value="0">Beginner</option>
+    <option value="1">Intermediate</option>
+    <option value="2">Expert</option>
+  </selection>
+
+  <selection name="student.progress.select">
+    <option value="0">0 %</option>
+    <option value="10">10 %</option>
+    <option value="20">20 %</option>
+    <option value="30">30 %</option>
+    <option value="40">40 %</option>
+    <option value="50">50 %</option>
+    <option value="60">60 %</option>
+    <option value="70">70 %</option>
+    <option value="80">80 %</option>
+    <option value="90">90 %</option>
+    <option value="100">100 %</option>
+  </selection>
+
+
+</object-views>

@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
 
-	<chart name="chart-student" title="Student">
-		<search-fields>
-			<field name="bdate" />
-		</search-fields>
-		<dataset type="jpql">
-		</dataset>
-		<category key="abc" type="number" title="asd"/>
-		<series key="ada"/>
-	</chart>
+  <chart name="chart-student" title="Student">
+    <search-fields>
+      <field name="marks" />
+    </search-fields>
+    <dataset type="jpql"><![CDATA[
+             SELECT
+              s.marks AS marks,
+              s.name AS student
+          FROM
+              Student s
+          WHERE
+              s.marks < :marks
+          ORDER BY
+              marks
+      ]]></dataset>
+    <category key="student" type="text" title="Student" />
+    <series key="marks" type="bar" title="Marks" />
+  </chart>
+
+  <chart name="chart-student-sql" title="Student">
+    <!-- <search-fields>
+      <field name="marks" />
+    </search-fields> -->
+    <dataset type="sql"><![CDATA[
+           SELECT
+          marks AS _marks,
+          name As _student
+         FROM
+          student_student
+      ]]></dataset>
+    <category key="_student" type="text" title="Student" />
+    <series key="_marks" type="pie" title="Marks" />
+  </chart>
+
+
 </object-views>
