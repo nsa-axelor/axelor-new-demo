@@ -22,6 +22,8 @@
     <integer name="priority" selection="student.priority.select" default="2" title="Priority" />
     <integer name="status" selection="student.status.select" title="Status"/>
     <integer name="progress" title="Progress (%)" selection="student.progress.select"/>
+    <date name="startdate" title="Start Date"/>
+    <date name="enddate" title="End Date" />
   </entity>
 
 
