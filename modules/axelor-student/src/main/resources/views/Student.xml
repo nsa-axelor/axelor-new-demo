@@ -1,92 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.2.xsd">
 
-	<grid model="com.axelor.app.student.db.Student" title="Student" name="student-grid">
-		<!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> </toolbar> -->
-		<field name="name" />
-		<field name="rollnumber.rollnumber" />
-		<field name="department" />
-		<field name="subject" />
-		<field name="sports" />
-		<field name="contact" title="Teacher" />
-		<field name="bdate" />
-		<field name="age" />
-		<field name="marks" title="Total Marks" />
-	</grid>
+  <grid model="com.axelor.app.student.db.Student" title="Student" name="student-grid">
+    <toolbar>
+      <button name="addSports" icon="fa-list" title="Assign Sports to students" onClick="action-student-method-add-sports-onclick" />
+    </toolbar>
+    <field name="name" />
+    <field name="rollnumber.rollnumber" />
+    <field name="department" />
+    <field name="subject" />
+    <field name="sports" />
+    <field name="contact" title="Teacher" />
+    <field name="bdate" />
+    <field name="age" />
+    <field name="marks" title="Total Marks" />
+  </grid>
 
-	<action-record name="action-attrs-onnew-load-default-value" model="com.axelor.app.student.db.Student">
-		<field name="$scholarShip" expr="eval: true" />
-		<field name="startdate" expr="eval: LocalDate.parse(&quot;2019-01-01&quot;);" />
-		<field name="enddate" expr="eval: __date__" />
-	</action-record>
+  <action-method name="action-student-method-add-sports-onclick">
+    <call class="com.axelor.app.student.web.CSVTest" method="setSports" />
+  </action-method>
 
-	<action-view name="action-student-view-add-subject-popup" model="com.axelor.app.student.db.Subject" title="Add Subject">
-	<view type="form" name="subject-form"/>
-		<view-param name="popup" value="reload" />
-		<view-param name="show-toolbar" value="false" />
-		<view-param name="show-confirm" value="false" />
-		<view-param name="popup-save" value="true" />
-		<view-param name="forceEdit" value="true" />
-<!-- 		<context name="_showRecord" expr="eval: id" /> -->
-	</action-view>
+  <action-record name="action-attrs-onnew-load-default-value" model="com.axelor.app.student.db.Student">
+    <field name="$scholarShip" expr="eval: true" />
+    <field name="startdate" expr="eval: LocalDate.parse(&quot;2019-01-01&quot;);" />
+    <field name="enddate" expr="eval: __date__" />
+  </action-record>
 
-	<form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
-		onSave="action-student-method-onsave,action-student-validate-date-check-onsave,action-student-condition-check-fathername">
-		<!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all" 
-			/> </toolbar> -->
-		<panel colSpan="12">
-			<field name="status" colSpan="6" widget="NavSelect" showTitle="false" />
-			<button name="addSubject" title="Add Subject" onClick="action-student-view-add-subject-popup" />
-			<field name="name" colspan="6" />
-			<field name="rollnumber" colspan="6">
-				<!-- <editor x-viewer="true"> <field name="rollnumber" /> </editor> -->
-			</field>
-			<field name="fatherName" />
-			<field name="bdate" onChange="action-student-method-count-age-by-bdate,action-student-validate-check-student-age" colSpan="3" />
-			<!-- <field name="$scholarShip" type="boolean" widget="boolean-switch" onChange="action-student-attrs-rollnumber" colSpan="1" /> -->
-			<field name="general" colSpan="2" />
-			<button name="toggle" onClick="action-student-attrs-toggle-onclick,action-student-attrs-toggle-general-onclick" title="Toggle" colSpan="3" />
-			<field name="age" colSpan="1" />
-			<field name="marks" />
-			<field name="department" colSpan="12" onChange="action-student-method-onsave,save,action-group-student-subject-filter" />
-		</panel>
-		<panel colSpan="12">
-			<field name="priority" colSpan="6" />
-			<field name="progress" widget="SelectProgress">
-				<editor>
-					<field name="progress" colSpan="6" showTitle="false" />
-				</editor>
-			</field>
-			<field name="subject" colSpan="12" domain="self.department = :department" />
-			<field name="sports" colSpan="12" />
-			<field name="contact" colSpan="12" title="Teacher" />
-		</panel>
+  <action-view name="action-student-view-add-subject-popup" model="com.axelor.app.student.db.Subject" title="Add Subject">
+    <view type="form" name="subject-form" />
+    <view-param name="popup" value="reload" />
+    <view-param name="show-toolbar" value="false" />
+    <view-param name="show-confirm" value="false" />
+    <view-param name="popup-save" value="true" />
+    <view-param name="forceEdit" value="true" />
+    <!-- <context name="_showRecord" expr="eval: id" /> -->
+  </action-view>
 
-		<panel colSpan="12">
-			<field name="startdate" />
-			<field name="enddate" />
-		</panel>
-	</form>
+  <form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
+    onSave="action-student-method-onsave,action-student-validate-date-check-onsave,action-student-condition-check-fathername">
+    <!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all"
+      /> </toolbar> -->
+    <panel colSpan="12">
+      <field name="status" colSpan="6" widget="NavSelect" showTitle="false" />
+      <button name="addSubject" title="Add Subject" onClick="action-student-view-add-subject-popup" />
+      <field name="name" colspan="6" />
+      <field name="rollnumber" colspan="6">
+        <!-- <editor x-viewer="true"> <field name="rollnumber" /> </editor> -->
+      </field>
+      <field name="fatherName" />
+      <field name="bdate" onChange="action-student-method-count-age-by-bdate,action-student-validate-check-student-age" colSpan="3" />
+      <!-- <field name="$scholarShip" type="boolean" widget="boolean-switch" onChange="action-student-attrs-rollnumber" colSpan="1" /> -->
+      <field name="general" colSpan="2" />
+      <button name="toggle" onClick="action-student-attrs-toggle-onclick,action-student-attrs-toggle-general-onclick" title="Toggle" colSpan="3" />
+      <field name="age" colSpan="1" />
+      <field name="marks" />
+      <field name="department" colSpan="12" onChange="action-student-method-onsave,save,action-group-student-subject-filter" />
+    </panel>
+    <panel colSpan="12">
+      <field name="priority" colSpan="6" />
+      <field name="progress" widget="SelectProgress">
+        <editor>
+          <field name="progress" colSpan="6" showTitle="false" />
+        </editor>
+      </field>
+      <field name="subject" colSpan="12" domain="self.department = :department" />
+      <field name="sports" colSpan="12" />
+      <field name="contact" colSpan="12" title="Teacher" />
+    </panel>
 
-	<!-- <kanban name="student-kanban" sequenceBy="priority" model="com.axelor.app.student.db.Student" columnBy="status" title="Student Kanban" onNew="action-student-view-new-student-entry-onnew-kanban"> -->
-	<kanban name="student-kanban" sequenceBy="priority" model="com.axelor.app.student.db.Student" columnBy="status" title="Student Kanban">
-		<field name="name" />
-		<field name="rollnumber.rollnumber" />
-		<field name="department" />
-		<field name="subject" />
-		<field name="sports" />
-		<field name="contact" title="Teacher" />
-		<field name="bdate" />
-		<field name="age" />
-		<field name="progress" />
-		<field name="marks" title="Total Marks" />
-		<hilite color="primary" if="priority == 1" />
-		<hilite color="info" if="priority == 2" />
-		<hilite color="warning" if="priority == 3" />
-		<hilite color="danger" if="priority == 4" />
-		<template>
+    <panel colSpan="12">
+      <field name="startdate" />
+      <field name="enddate" />
+    </panel>
+  </form>
+
+  <!-- <kanban name="student-kanban" sequenceBy="priority" model="com.axelor.app.student.db.Student" columnBy="status" title="Student Kanban" onNew="action-student-view-new-student-entry-onnew-kanban"> -->
+  <kanban name="student-kanban" sequenceBy="priority" model="com.axelor.app.student.db.Student" columnBy="status" title="Student Kanban">
+    <field name="name" />
+    <field name="rollnumber.rollnumber" />
+    <field name="department" />
+    <field name="subject" />
+    <field name="sports" />
+    <field name="contact" title="Teacher" />
+    <field name="bdate" />
+    <field name="age" />
+    <field name="progress" />
+    <field name="marks" title="Total Marks" />
+    <hilite color="primary" if="priority == 1" />
+    <hilite color="info" if="priority == 2" />
+    <hilite color="warning" if="priority == 3" />
+    <hilite color="danger" if="priority == 4" />
+    <template>
       <![CDATA[
         <h4>{{name}}</h4>
            <div class="card-body">
@@ -112,73 +118,73 @@
           </div>
       ]]>
     </template>
-	</kanban>
+  </kanban>
 
-	<calendar name="student-calendar" model="com.axelor.app.student.db.Student" eventStart="startdate" eventStop="enddate" eventLength="8" title="Student Calendar"
-		colorBy="department">
-		<field name="name" />
-		<field name="status" />
-	</calendar>
+  <calendar name="student-calendar" model="com.axelor.app.student.db.Student" eventStart="startdate" eventStop="enddate" eventLength="8" title="Student Calendar"
+    colorBy="department">
+    <field name="name" />
+    <field name="status" />
+  </calendar>
 
-	<action-condition name="action-student-condition-check-fathername">
-		<check field="fatherName" error="Please Enter Father Name" if="!general &amp;&amp; fatherName == null" />
-	</action-condition>
+  <action-condition name="action-student-condition-check-fathername">
+    <check field="fatherName" error="Please Enter Father Name" if="!general &amp;&amp; fatherName == null" />
+  </action-condition>
 
-	<action-method name="action-student-method-count-age-by-bdate">
-		<call class="com.axelor.app.student.web.StudentController" method="countStudentAge" />
-	</action-method>
+  <action-method name="action-student-method-count-age-by-bdate">
+    <call class="com.axelor.app.student.web.StudentController" method="countStudentAge" />
+  </action-method>
 
-	<action-attrs name="action-student-attrs-toggle-general-onclick">
-		<attribute name="value" for="general" expr="eval: !general" />
-	</action-attrs>
+  <action-attrs name="action-student-attrs-toggle-general-onclick">
+    <attribute name="value" for="general" expr="eval: !general" />
+  </action-attrs>
 
-	<action-record name="action-record-scholarship-toggle" model="com.axelor.app.student.db.Student">
-		<field name="$scholarship" expr="eval: !$scholarShip" />
-		<!-- <field name="$scholarship" expr="eval: false" if="__this__.$scholarShip" /> -->
-	</action-record>
+  <action-record name="action-record-scholarship-toggle" model="com.axelor.app.student.db.Student">
+    <field name="$scholarship" expr="eval: !$scholarShip" />
+    <!-- <field name="$scholarship" expr="eval: false" if="__this__.$scholarShip" /> -->
+  </action-record>
 
 
-	<action-attrs name="action-student-attrs-toggle-onclick">
-		<attribute name="hidden" for="$scholarShip" expr="#{!$scholarShip}" />
-	</action-attrs>
+  <action-attrs name="action-student-attrs-toggle-onclick">
+    <attribute name="hidden" for="$scholarShip" expr="#{!$scholarShip}" />
+  </action-attrs>
 
-	<action-group name="action-group-student-subject-filter">
-		<action name="action-attrs-student-subject-filter" />
-		<action name="action-record-student-subject-filter" />
-	</action-group>
+  <action-group name="action-group-student-subject-filter">
+    <action name="action-attrs-student-subject-filter" />
+    <action name="action-record-student-subject-filter" />
+  </action-group>
 
-	<action-attrs name="action-attrs-student-subject-filter">
-		<attribute name="domain" for="subject" expr="self.department=:department" />
-	</action-attrs>
+  <action-attrs name="action-attrs-student-subject-filter">
+    <attribute name="domain" for="subject" expr="self.department=:department" />
+  </action-attrs>
 
-	<action-record name="action-record-student-subject-filter" model="com.axelor.app.student.db.Student">
-		<field name="subject" expr="eval: __self__.department.subject" />
-	</action-record>
+  <action-record name="action-record-student-subject-filter" model="com.axelor.app.student.db.Student">
+    <field name="subject" expr="eval: __self__.department.subject" />
+  </action-record>
 
-	<action-attrs name="action-student-attrs-rollnumber">
-		<attribute name="readonly" for="rollnumber" expr="eval: $scholarShip" if="$scholarShip" />
-	</action-attrs>
+  <action-attrs name="action-student-attrs-rollnumber">
+    <attribute name="readonly" for="rollnumber" expr="eval: $scholarShip" if="$scholarShip" />
+  </action-attrs>
 
-	<action-method name="action-student-method-onsave">
-		<call class="com.axelor.app.student.web.RollNumberController" method="generateRollNumber" />
-	</action-method>
+  <action-method name="action-student-method-onsave">
+    <call class="com.axelor.app.student.web.RollNumberController" method="generateRollNumber" />
+  </action-method>
 
-	<action-validate name="action-student-validate-date-check-onsave">
-		<error message="date not valid !" if="bdate &gt; __date__" action="action-student-attrs-reset-badte" />
-	</action-validate>
+  <action-validate name="action-student-validate-date-check-onsave">
+    <error message="date not valid !" if="bdate &gt; __date__" action="action-student-attrs-reset-badte" />
+  </action-validate>
 
-	<action-validate name="action-student-validate-check-student-age">
-		<!-- <alert message="Student age is less than seventeen" if="bdate &gt; LocalDate.parse(&quot;2003-12-31&quot;);" action="action-student-attrs-reset-bdate-again" /> -->
-		<error message="Student age is less than 17" if="bdate &gt; LocalDate.parse(&quot;2003-12-31&quot;);" action="action-student-attrs-reset-bdate-again" />
-		<info message="Birthdate is validated!" if="!general" />
-		<notify message="Validated!" />
-	</action-validate>
+  <action-validate name="action-student-validate-check-student-age">
+    <!-- <alert message="Student age is less than seventeen" if="bdate &gt; LocalDate.parse(&quot;2003-12-31&quot;);" action="action-student-attrs-reset-bdate-again" /> -->
+    <error message="Student age is less than 17" if="bdate &gt; LocalDate.parse(&quot;2003-12-31&quot;);" action="action-student-attrs-reset-bdate-again" />
+    <info message="Birthdate is validated!" if="!general" />
+    <notify message="Validated!" />
+  </action-validate>
 
-	<action-attrs name="action-student-attrs-reset-bdate-again">
-		<attribute name="value" for="bdate" expr="" />
-	</action-attrs>
+  <action-attrs name="action-student-attrs-reset-bdate-again">
+    <attribute name="value" for="bdate" expr="" />
+  </action-attrs>
 
-	<action-attrs name="action-student-attrs-reset-badte">
-		<attribute name="value" for="bdate" expr="" />
-	</action-attrs>
+  <action-attrs name="action-student-attrs-reset-badte">
+    <attribute name="value" for="bdate" expr="" />
+  </action-attrs>
 </object-views>
