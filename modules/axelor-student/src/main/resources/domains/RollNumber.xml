@@ -4,7 +4,7 @@
   http://axelor.com/xml/ns/domain-models/domain-models_5.2.xsd">
 
   <module name="rollnumber" package="com.axelor.app.student.db" />
-  <sequence name="student.rollnumber.seq" increment="1" initial="1" padding="2"/>
+  <sequence name="student.rollnumber.seq" increment="1" initial="11" padding="2"/>
 
   <entity name="RollNumber" cacheable="true" repository="default">
     <string name="rollnumber" namecolumn="true" unique="true" sequence="student.rollnumber.seq" readonly="true"/>

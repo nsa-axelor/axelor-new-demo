@@ -7,6 +7,7 @@
 
   <entity name="Contact" sequential="true" cacheable="true" repository="abstract">
     <many-to-one name="title" ref="Title"/>
+    <string name="code" unique="true"/>
     <string name="firstName" required="true" initParam="true"/>
     <string name="lastName" required="true" initParam="true"/>
     <string name="fullName" namecolumn="true" search="firstName,lastName"><![CDATA[

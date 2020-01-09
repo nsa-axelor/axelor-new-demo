@@ -5,6 +5,7 @@
   <module package="com.axelor.app.student.db" name="department"/>
 
   <entity name="Department">
+    <integer name="importId" />
     <string name="name" />
     <one-to-many name="subject" ref="com.axelor.app.student.db.Subject" mappedBy="department"/>
   </entity>

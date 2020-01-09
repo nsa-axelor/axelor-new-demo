@@ -1,0 +1,6 @@
+name,rollnumber,department,contact,bdate,general,fatherName,marks,priority,status,progress,startdate,enddate
+STUD06,06,Computer,pp|ah|gg|js|lj,06/01/1995,t,F06,500,1,0,70,2020-01-08,2020-01-08
+STUD07,07,Mechanical,ah|gg|js,07/01/1995,f,F07,368,2,2,80,2020-01-09,2020-01-09
+STUD08,08,Civil,pp|js,08/01/1995,yes,F08,488,3,1,90,2020-01-10,2020-01-10
+STUD09,09,Computer,ah|gg|js,09/01/1995,no,F09,499,1,1,60,2020-01-11,2020-01-11
+STUD10,10,Mechanical,gg|js|lj,10/01/1995,1,F10,405,2,2,50,2020-01-12,2020-01-12

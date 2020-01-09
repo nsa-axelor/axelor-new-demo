@@ -9,6 +9,7 @@
 
   <form model="com.axelor.app.student.db.Department" title="Department" name="department-form">
     <field name="name" title="Department" />
+    <field name="subject"/>
   </form>
 
 </object-views>

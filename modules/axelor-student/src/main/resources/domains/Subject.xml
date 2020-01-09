@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
   http://axelor.com/xml/ns/domain-models/domain-models_5.2.xsd">
 
-  <module package="com.axelor.app.student.db" name="subject"/>
+  <module package="com.axelor.app.student.db" name="subject" />
 
   <entity name="Subject">
-    <string name="name" />
-    <many-to-one name="department" ref="com.axelor.app.student.db.Department"/>
+    <integer name="importId" />
+    <string name="name" unique="true" />
+    <many-to-one name="department" ref="com.axelor.app.student.db.Department" />
   </entity>
 
-  </domain-models>
+</domain-models>
