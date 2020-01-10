@@ -40,6 +40,9 @@
 
   <form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
     onSave="action-student-method-onsave,action-student-validate-date-check-onsave,action-student-condition-check-fathername">
+    <toolbar>
+      <button name="reportBtn" title="Report" onClick="action-student-report"/>
+    </toolbar>
     <!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all"
       /> </toolbar> -->
     <panel colSpan="12">
@@ -187,4 +190,8 @@
   <action-attrs name="action-student-attrs-reset-badte">
     <attribute name="value" for="bdate" expr="" />
   </action-attrs>
+
+  <action-report output="Student" name="action-student-report" design="student_report.rptdesign">
+    <param name="stud_id" expr="eval: __self__.id"/>
+  </action-report>
 </object-views>
