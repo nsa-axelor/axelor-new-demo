@@ -42,6 +42,7 @@
     onSave="action-student-method-onsave,action-student-validate-date-check-onsave,action-student-condition-check-fathername">
     <toolbar>
       <button name="reportBtn" title="Report" onClick="action-student-report"/>
+      <button name="newReport" title="New Report" onClick="action-student-report-generate-first-row"/>
     </toolbar>
     <!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all"
       /> </toolbar> -->
@@ -194,4 +195,10 @@
   <action-report output="Student" name="action-student-report" design="student_report.rptdesign">
     <param name="stud_id" expr="eval: __self__.id"/>
   </action-report>
+  
+  <action-report output="Student" name="action-student-report-generate-first-row" design="new_student_report.rptdesign">
+  	<param name="student_id" expr="eval: __self__.id"/>
+  </action-report>
+  
+  
 </object-views>
