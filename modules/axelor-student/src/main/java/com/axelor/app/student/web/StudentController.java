@@ -1,5 +1,6 @@
 package com.axelor.app.student.web;
 
+import com.axelor.app.AppSettings;
 import com.axelor.app.student.db.Department;
 import com.axelor.app.student.db.Student;
 import com.axelor.app.student.db.Subject;
@@ -24,7 +25,19 @@ public class StudentController {
     LocalDate bdate = student.getBdate();
     LocalDate today = LocalDate.now();
     Period p = Period.between(bdate, today);
+    String home = service.getAttachmentPathForImage();
+    home = System.getProperty("file.upload.dir");
+    System.err.println("PATH: " + home);
+    System.err.println("APP-PATH: " + AppSettings.get().getPath("file.upload.dir", ""));
     response.setValue("age", p.getYears());
+  }
+
+  public String getHomePath(ActionRequest request, ActionResponse response) {
+    String home = service.getAttachmentPathForImage();
+    //		home = System.getProperty("user.home") + "/.axelor/attachments/";
+    System.err.println("HOME-PATH: " + home);
+    AppSettings.get().getPath("file.upload.dir", "a");
+    return home;
   }
 
   public Object validateStudentData(Object bean, Map<String, Object> context) {

@@ -24,6 +24,7 @@
     <integer name="progress" title="Progress (%)" selection="student.progress.select"/>
     <date name="startdate" title="Start Date"/>
     <date name="enddate" title="End Date" />
+    <many-to-one name="studentImage" ref="com.axelor.meta.db.MetaFile" title="Student Photo"/>
   </entity>
 
 

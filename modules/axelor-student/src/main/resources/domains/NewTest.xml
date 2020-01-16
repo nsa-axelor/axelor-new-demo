@@ -5,16 +5,17 @@
 
   <module package="com.axelor.app.student.db" name="newtest" />
 
-  <entity name="NewTest" >
-    <string name="name" encrypted="true"/>
+  <entity name="NewTest">
+    <string name="name" encrypted="true" />
     <string name="hiddenfield" hidden="true" />
-    <integer name="age" title="Age" min="18" default="18"/>
+    <integer name="age" title="Age" min="18" default="18" />
     <decimal name="height" title="Height" />
     <date name="bdate" title="Date" />
     <binary name="image" image="true" title="Image" />
-    <boolean name="active" title="Active"/>
-    <binary name="report" title="Report" image="false"/>
-    <entity-listener class="com.axelor.app.student.db.repo.NewTestListener"/>
+    <many-to-one name="image2" ref="com.axelor.meta.db.MetaFile" />
+    <boolean name="active" title="Active" />
+    <binary name="report" title="Report" image="false" />
+    <entity-listener class="com.axelor.app.student.db.repo.NewTestListener" />
   </entity>
 
 </domain-models>

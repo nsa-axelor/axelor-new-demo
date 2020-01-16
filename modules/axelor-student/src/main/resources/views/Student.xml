@@ -41,14 +41,15 @@
   <form name="student-form" title="Student" model="com.axelor.app.student.db.Student" onNew="action-attrs-onnew-load-default-value"
     onSave="action-student-method-onsave,action-student-validate-date-check-onsave,action-student-condition-check-fathername">
     <toolbar>
-      <button name="reportBtn" title="Report" onClick="action-student-report"/>
-      <button name="newReport" title="New Report" onClick="action-student-report-generate-first-row"/>
+      <button name="reportBtn" title="Report" onClick="action-student-report" />
+      <button name="newReport" title="New Report" onClick="action-student-report-generate-first-row" />
     </toolbar>
     <!-- <toolbar> <button name="Kanban" icon="fa-list" title="Kanban" onClick="action-student-view-kanban" /> <button name="btnPrint" icon="fa-list" title="Grid" onClick="menu-item-newtest-all"
       /> </toolbar> -->
     <panel colSpan="12">
       <field name="status" colSpan="6" widget="NavSelect" showTitle="false" />
       <button name="addSubject" title="Add Subject" onClick="action-student-view-add-subject-popup" />
+      <panel colSpan="9">
       <field name="name" colspan="6" />
       <field name="rollnumber" colspan="6">
         <!-- <editor x-viewer="true"> <field name="rollnumber" /> </editor> -->
@@ -60,6 +61,8 @@
       <button name="toggle" onClick="action-student-attrs-toggle-onclick,action-student-attrs-toggle-general-onclick" title="Toggle" colSpan="3" />
       <field name="age" colSpan="1" />
       <field name="marks" />
+      </panel>
+      <field name="studentImage" widget="image" colSpan="3"/>
       <field name="department" colSpan="12" onChange="action-student-method-onsave,save,action-group-student-subject-filter" />
     </panel>
     <panel colSpan="12">
@@ -193,12 +196,13 @@
   </action-attrs>
 
   <action-report output="Student" name="action-student-report" design="student_report.rptdesign">
-    <param name="stud_id" expr="eval: __self__.id"/>
+    <param name="stud_id" expr="eval: __self__.id" />
   </action-report>
-  
+
   <action-report output="Student" name="action-student-report-generate-first-row" design="new_student_report.rptdesign">
-  	<param name="student_id" expr="eval: __self__.id"/>
+    <param name="student_id" expr="eval: __self__.id" />
+    <param name="attechment-path" expr='eval: com?.axelor?.app?.AppSettings?.get()?.getPath("file.upload.dir", "")+"/"' />
   </action-report>
-  
-  
+
+
 </object-views>

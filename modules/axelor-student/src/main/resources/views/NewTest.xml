@@ -22,6 +22,7 @@
     <field name="bdate" />
     <field name="active" />
     <field name="image" showTitle="false" />
+    <field name="image2" showTitle="false" widget="image" />
     <field name="report" showTitle="false" colSpan="12" />
     <button name="testBtn" title="Test" onClick="action.student.view.all.student" />
     <button name="testtwo" title="Test Two" onClick="action.student.newtest.hiddenfield.show" />
